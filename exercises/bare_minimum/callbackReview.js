@@ -9,26 +9,26 @@ var request = require('request');
 var pluckFirstLineFromFile = function (filePath, callback) {
   // TODO
   fs.readFile(filePath, (err, data) => {
-    if(err) {
+    if (err) {
       callback(err, null);
     } else {
       let newData = data.toString().split(/\r?\n/);
       callback(null, newData[0]);
     }
-  })
+  });
 };
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCode = function (url, callback) {
   // TODO
   request(url, (err, res, body) => {
-    if(err) {
+    if (err) {
       callback(err, null);
     } else {
-      res.statusCode = 200;
+      // res.statusCode = 200;
       callback(null, res.statusCode);
     }
-  })
+  });
 };
 
 // Export these functions so we can test them and reuse them in later exercises

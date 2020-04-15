@@ -19,7 +19,7 @@ var pluckFirstLineFromFileAsync = function (filePath) {
         let newData = data.toString().split(/\r?\n/);
         resolve(newData[0]);
       }
-    })
+    });
   });
 
 };
@@ -27,13 +27,14 @@ var pluckFirstLineFromFileAsync = function (filePath) {
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function (url) {
   // TODO
-  return new Promise((reject, resolve) => {
+  return new Promise((resolve, reject) => {
     request(url, (err, res, body) => {
       if (err) {
-        reject('Invalid URI');
+        reject(err);
       } else {
         // res.statusCode = 200;
-        resolve(200);
+        // console.log(res.statusCode)
+        resolve(res.statusCode);
       }
     });
   });

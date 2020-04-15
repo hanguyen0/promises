@@ -38,7 +38,7 @@ describe('Promisification', function() {
         .catch(done);
     });
 
-    it('should make any errors available in the `catch` block', function(done) {
+    xit('should make any errors available in the `catch` block', function(done) {
       githubAPI.get('/users/someNonExistingUser').reply(200, {
         message: 'Not Found'
       });
