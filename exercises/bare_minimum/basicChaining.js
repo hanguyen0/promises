@@ -13,8 +13,43 @@ var Promise = require('bluebird');
 
 
 
-var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
+var fetchProfileAndWriteToFile = function (readFilePath, writeFilePath) {
   // TODO
+  let readFile = (readFilePath) => {
+    return new Promise((resolve, reject) => {
+      fs.readFile(readFilePath, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          let username = data.toString.split(/\r?\n/)
+          resolve(username[0]);
+        }
+      });
+    });
+  }
+
+  let writeFile = (writeFilePath) => {
+    return new Promise((resolve, reject) => {
+      fs.writeFile(writeFilePath, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data.toString())
+        }
+      });
+    });
+  }
+
+  let errorHandler = (err) => {
+    if(err) {
+      throw new Error(err);
+    }
+  }
+    // readFile(readFilePath)
+    // .then(writeFile)
+    // .catch(errorHandler);
+  // }
+
 };
 
 // Export these functions so we can test them

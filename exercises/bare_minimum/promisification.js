@@ -13,23 +13,22 @@ var getGitHubProfile = function (user) {
   var options = {
     url: 'https://api.github.com/users/' + user,
     headers: { 'User-Agent': 'request' },
-    json: true  // will JSON.parse(body) for us
+    json: true//will JSON.parse(body) for us
   };
   return new Promise((resolve, reject) => {
     request.get(options, function (err, res, body) {
       if (err) {
         reject(err);
-      }
-      // else if (body.message) {
-      //   reject('Failed to get GitHub profile');
-      // }
-      else {
+      } else {
         resolve(body);
       }
     });
   });
 
 };
+// else if (body.message) {
+//   reject('Failed to get GitHub profile');
+// }
 // Promise.promisifyAll(request, {suffix: String="Async",multiArgs: true});
 var getGitHubProfileAsync = getGitHubProfile;
 //Promise.promisify(getGitHubProfile, {multiArgs: true})
@@ -51,17 +50,17 @@ var readFileAndMakeItFunny = function (filePath, callback) {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', function (err, file) {
       if (err) { return reject(err); }
-  
+
       var funnyFile = file.split('\n')
         .map(function (line) {
           return line + ' lol';
         })
         .join('\n');
-  
+
       resolve(funnyFile);
     });
-  }); 
-  
+  });
+
 };
 
 var readFileAndMakeItFunnyAsync = readFileAndMakeItFunny; // TODO
